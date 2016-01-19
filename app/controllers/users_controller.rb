@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if current_user != @user
       redirect_to root_path
     end
-     if @user.update_attributes(user_params)
+     if @user.update(user_params)
          flash[:success] = "Profileを更新しました"
         # Updateに成功した場合はprofileページへリダイレクト
         redirect_to user_path
