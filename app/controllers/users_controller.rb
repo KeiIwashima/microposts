@@ -22,14 +22,17 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if current_user != @user
-      redirect_to user_path
+      redirect_to root_path
     end
   end
     #自分のユーザー(current_user)編集ページ(users/:id/edit)ではない場合TOPページへリダイレクト
   
   def update
     @user = User.find(params[:id])
-       if @user.update_attributes(user_params)
+    if current_user != @user
+      redirect_to root_path
+    end
+     if @user.update_attributes(user_params)
          flash[:success] = "Profileを更新しました"
         # Updateに成功した場合はprofileページへリダイレクト
         redirect_to user_path
@@ -44,5 +47,5 @@ class UsersController < ApplicationController
   def user_params
      params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :location, :about)
-   end 
-end
+   end
+  end
