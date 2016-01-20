@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+ before_action :logged_in_user, only: [:update]
   
   def show
     @user = User.find(params[:id])
@@ -29,23 +29,20 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if current_user != @user
-      redirect_to root_path
-    end
      if @user.update(user_params)
          flash[:success] = "Profileを更新しました"
         # Updateに成功した場合はprofileページへリダイレクト
         redirect_to user_path
-      else
+     else
         # Updateに失敗した場合は編集画面へ戻す
       render 'edit'
-    end
+     end
   end
 
   private 
   
-  def user_params
-     params.require(:user).permit(:name, :email, :password,
+   def user_params
+       params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :location, :about)
    end
   end

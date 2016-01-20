@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
     validates :location, length: { maximum: 10 } 
     validates :about, length: { maximum: 100 }
     has_secure_password
-    has_many :toukous
+    has_many :microposts
 end
 
