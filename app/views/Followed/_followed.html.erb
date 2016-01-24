@@ -1,0 +1,12 @@
+<li id="followeduser-<%= followed.id %>">
+  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="content"><%= micropost.user.location %></span>
+  <span class="content"><%= micropost.user.about %></span>
+    
+    <% if current_user ==micropost.user %>
+        <%= link_to "delete", micropost, method: :delete,
+                                        data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>

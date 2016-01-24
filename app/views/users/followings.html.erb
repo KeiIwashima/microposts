@@ -6,10 +6,12 @@
   </aside>
 <div class="col-md-8">
    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+    <h3><%= @title %> (<%= @relationships.count %>)</h3>
+    <% if @relationships.any? %>
       <ol class="microposts">
-        <%= render @microposts %>
+        <% @relationships.each do |user| %>
+        <%= link_to user.name,user %><br />
+        <% end %>
       </ol>
     <% end %>
   </div>

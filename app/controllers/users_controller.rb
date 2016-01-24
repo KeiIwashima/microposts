@@ -19,7 +19,21 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def followings # users/:id/followings
+  @title = "フォロー"
+   @user = User.find(params[:id])
+   #@relationships = @user.follower_relationships.find(params[:id]).followed
+   @relationships = @user.following_users
+  end
   
+  def followers
+    @title = "フォロワー"
+    @user = User.find(params[:id])
+    @relationships = @user.follower_users
+    render 'followings'
+  end
+
   def edit
     if current_user != @user
       redirect_to root_path
