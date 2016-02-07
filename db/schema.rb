@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120101441) do
+ActiveRecord::Schema.define(version: 20160127111635) do
+
+  create_table "like_relationships", force: :cascade do |t|
+    t.integer  "like_id"
+    t.integer  "liked_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "like_relationships", ["like_id", "liked_id"], name: "index_like_relationships_on_like_id_and_liked_id", unique: true
+  add_index "like_relationships", ["like_id"], name: "index_like_relationships_on_like_id"
+  add_index "like_relationships", ["liked_id"], name: "index_like_relationships_on_liked_id"
+
+  create_table "micropostrelationships", force: :cascade do |t|
+    t.integer  "micropost_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "micropostrelationships", ["micropost_id", "user_id"], name: "index_micropostrelationships_on_micropost_id_and_user_id", unique: true
+  add_index "micropostrelationships", ["micropost_id"], name: "index_micropostrelationships_on_micropost_id"
+  add_index "micropostrelationships", ["user_id"], name: "index_micropostrelationships_on_user_id"
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"

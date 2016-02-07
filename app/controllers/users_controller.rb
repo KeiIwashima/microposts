@@ -19,6 +19,12 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def iine # iine_user   users/:id/iine(.:format)  
+   @title = "いいね投稿一覧"
+   @user = User.find(params[:id])
+   @relationships = @user.iinesita_microposts
+ end
 
   def followings # users/:id/followings
   @title = "フォロー"
@@ -33,6 +39,18 @@ class UsersController < ApplicationController
     @relationships = @user.follower_users
     render 'followings'
   end
+  
+  #def like
+    #@title = "いいね"
+    #@user = User.find(params[:id])
+    #@relationships = @user.following_users
+  #end
+  
+  #def liked
+    #@title = "いいね"
+    #@user = User.find(params[:id])
+    #@relationships = @user.following_users
+  #end
 
   def edit
     if current_user != @user

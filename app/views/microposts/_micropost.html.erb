@@ -9,5 +9,10 @@
         <%= link_to "delete", micropost, method: :delete,
                                         data: { confirm: "You sure?" } %>
     <% end %>
+    <% if current_user.iine?(micropost) %>
+      <%= link_to 'いいねを取り消す', micropostrelationship_path(micropost), method: :delete %>
+    <% else %>
+      <%= link_to "いいね", micropostrelationships_path(micropost_id: micropost.id), method: :post %>
+    <% end %>
   </span>
 </li>

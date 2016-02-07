@@ -1,0 +1,19 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    <%= render 'layouts/profilepartial' %>
+    </section>
+  </aside>
+<div class="col-md-8">
+   <%= render 'follow_form' if logged_in? %>
+    <h3><%= @title %> (<%= @relationships.count %>)</h3>
+    <% if @relationships.any? %>
+      <ol class="microposts">
+        <% @relationships.each do |user| %>
+        <li><span class="gravatar"><%= link_to gravatar_for(user, size: 42), user %></span></li>
+        <li><span class="user"> <%= link_to user.name,user %></span></li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+</div>

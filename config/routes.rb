@@ -12,7 +12,14 @@ Rails.application.routes.draw do
       get 'followings','followers'
     end
   end
+  resources :users do
+    member do 
+      get 'iine'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+  resources :like_relationships, only: [:create, :destroy]
+  resources :micropostrelationships, only: [:create, :destroy]
 end
