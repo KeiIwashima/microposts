@@ -24,7 +24,7 @@ class UsersController < ApplicationController
    @title = "いいね投稿一覧"
    @user = User.find(params[:id])
    @relationships = @user.iinesita_microposts
- end
+  end
 
   def followings # users/:id/followings
   @title = "フォロー"
