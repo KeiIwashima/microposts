@@ -10,7 +10,9 @@
                                         data: { confirm: "You sure?" } %>
     <% end %>
     <% if current_user !=micropost.user %>
+    <% if logged_in? %>
     <% if current_user.iine?(micropost) %>
+    <% end %>
       <%= link_to 'いいねを取り消す', micropostrelationship_path(micropost), method: :delete %>
     <% else %>
       <%= link_to "いいね", micropostrelationships_path(micropost_id: micropost.id), method: :post %>
